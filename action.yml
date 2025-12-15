@@ -1,7 +1,6 @@
 
 name: Google Chat Build Notification
-description: >
-  A GitHub Action to send customizable build notifications to Google Chat rooms via webhook. Supports platform, changelog, version, build number, mentions, status, and images.
+description: Send build notifications to Google Chat via webhook with status, changelog, and mentions support.
 author: Acme Software LLC
 
 branding:
