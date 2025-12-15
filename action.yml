@@ -1,5 +1,7 @@
+
 name: Google Chat Build Notification
-description: Send build notifications to Google Chat
+description: >
+  A GitHub Action to send customizable build notifications to Google Chat rooms via webhook. Supports platform, changelog, version, build number, mentions, status, and images.
 author: Acme Software LLC
 
 branding:
@@ -8,34 +10,34 @@ branding:
 
 inputs:
   webhook-url:
-    description: Google Chat Webhook URL
+    description: 'The Google Chat incoming webhook URL. Obtain this from your Google Chat room settings.'
     required: true
   platform:
-    description: Build platform (e.g., iOS, Android)
+    description: 'Build platform (e.g., iOS, Android). Used to customize the notification.'
     required: true
   changelog:
-    description: Changelog in markdown format
+    description: 'Changelog in markdown format. This will be included in the notification.'
     required: true
   app-version:
-    description: Application version
+    description: 'Application version (e.g., 1.2.3).'
     required: true
   build-number:
-    description: Build number
+    description: 'Build number. Defaults to N/A if not provided.'
     default: 'N/A'
     required: false
   mention:
-    description: Mention user or group in the notification, e.g., '<users/all>' or '<users/1234567890>'
+    description: 'Mention user or group in the notification, e.g., <users/all> or <users/1234567890>. Defaults to <users/all>.'
     default: '<users/all>'
     required: false
   status:
-    description: Build status (e.g., success, failure, cancelled)
+    description: 'Build status (e.g., success, failure, cancelled). Defaults to success.'
     required: false
     default: success
   image-url:
-    description: URL of the image to include in the notification, if not provided, a default image for the platform will be used
+    description: 'URL of the image to include in the notification. If not provided, a default image for the platform will be used.'
     required: false
 
-  
 runs:
   using: node24
   main: dist/index.js
+
