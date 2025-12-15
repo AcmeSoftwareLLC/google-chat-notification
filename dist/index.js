@@ -31332,13 +31332,18 @@ async function run() {
                 const message = parsedBody.error?.message;
                 if (message) {
                     coreExports.setFailed(`Failed to send notification. Status Code: ${statusCode}. Message: ${message}`);
+                    process.exit(1);
                 }
             }
             coreExports.setFailed(`Failed to send notification. Status Code: ${statusCode}`);
+            process.exit(1);
         }
+        coreExports.setOutput("status-code", statusCode || 200);
+        process.exit(0);
     }
     catch (error) {
         coreExports.setFailed(error instanceof Error ? error.message : String(error));
+        process.exit(1);
     }
 }
 
