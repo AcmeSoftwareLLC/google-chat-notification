@@ -31276,8 +31276,8 @@ async function run() {
         const message = status === "success"
             ? `🚀 ${mention} New ${platform} Build Available!`
             : status === "canceled"
-                ? "⚠️ Build Canceled!"
-                : "❌ Build Failed!";
+                ? `⚠️ ${platform} Build Canceled!`
+                : `❌ ${platform} Build Failed!`;
         const client = new libExports.HttpClient("google-chat-build-notification-action");
         const content = {
             text: message,
@@ -31294,7 +31294,7 @@ async function run() {
                                 widgets: [
                                     getDecoratedText("info", "App Version", appVersion),
                                     getDecoratedText("settings", "Build Number", buildNumber),
-                                    getDecoratedText("storage", "Repository", `${githubExports.context.repo.owner}/${githubExports.context.repo.repo}`),
+                                    getDecoratedText("storage", "Repository", githubExports.context.repo.repo),
                                     getDivider(),
                                     {
                                         textParagraph: { text: changelog, text_syntax: "MARKDOWN" },

@@ -23,8 +23,8 @@ export async function run(): Promise<void> {
 			status === "success"
 				? `🚀 ${mention} New ${platform} Build Available!`
 				: status === "canceled"
-					? "⚠️ Build Canceled!"
-					: "❌ Build Failed!";
+					? `⚠️ ${platform} Build Canceled!`
+					: `❌ ${platform} Build Failed!`;
 
 		const client = new HttpClient("google-chat-build-notification-action");
 		const content = {
