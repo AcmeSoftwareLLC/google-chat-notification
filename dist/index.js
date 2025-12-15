@@ -31327,14 +31327,12 @@ async function run() {
             const body = await response.readBody();
             if (body) {
                 const parsedBody = JSON.parse(body);
-                console.log(parsedBody.error);
-                console.log(typeof parsedBody.error);
-                console.log(parsedBody.error.message);
-                if (parsedBody.error.message) {
-                    throw new Error(`Failed to send notification. Status Code: ${response.message.statusCode}. Message: ${parsedBody.message}`);
+                const message = parsedBody.error?.message;
+                if (message) {
+                    coreExports.setFailed(`Failed to send notification. Status Code: ${statusCode}. Message: ${message}`);
                 }
             }
-            throw new Error(`Failed to send notification. Status Code: ${response.message.statusCode}`);
+            coreExports.setFailed(`Failed to send notification. Status Code: ${statusCode}`);
         }
     }
     catch (error) {

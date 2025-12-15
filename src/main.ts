@@ -83,17 +83,16 @@ export async function run(): Promise<void> {
 
 			if (body) {
 				const parsedBody = JSON.parse(body);
+				const message = parsedBody.error?.message;
 
-				if (parsedBody.error.message) {
-					throw new Error(
-						`Failed to send notification. Status Code: ${response.message.statusCode}. Message: ${parsedBody.error.message}`,
+				if (message) {
+					setFailed(
+						`Failed to send notification. Status Code: ${statusCode}. Message: ${message}`,
 					);
 				}
 			}
 
-			throw new Error(
-				`Failed to send notification. Status Code: ${response.message.statusCode}`,
-			);
+			setFailed(`Failed to send notification. Status Code: ${statusCode}`);
 		}
 	} catch (error) {
 		setFailed(error instanceof Error ? error.message : String(error));
