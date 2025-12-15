@@ -1,4 +1,4 @@
-import { getInput, setFailed } from "@actions/core";
+import { getInput, setFailed, setOutput } from "@actions/core";
 import { context } from "@actions/github";
 import { HttpClient, type HttpClientResponse } from "@actions/http-client";
 import {
@@ -96,6 +96,8 @@ export async function run(): Promise<void> {
 
 			setFailed(`Failed to send notification. Status Code: ${statusCode}`);
 		}
+
+		setOutput("status-code", statusCode || 200);
 	} catch (error) {
 		setFailed(error instanceof Error ? error.message : String(error));
 	}

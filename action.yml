@@ -37,6 +37,10 @@ inputs:
     description: 'URL of the image to include in the notification. If not provided, a default image for the platform will be used.'
     required: false
 
+outputs:
+  status-code:
+    description: 'The HTTP status code returned from the Google Chat webhook request.'
+
 runs:
   using: node24
   main: dist/index.js
