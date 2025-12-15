@@ -31,6 +31,9 @@ inputs:
     description: Build status (e.g., success, failure, cancelled)
     required: false
     default: success
+  image-url:
+    description: URL of the image to include in the notification, if not provided, a default image for the platform will be used
+    required: false
 
   
 runs:

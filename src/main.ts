@@ -17,6 +17,7 @@ export async function run(): Promise<void> {
 		const buildNumber = getInput("build-number") || "N/A";
 		const changelog = getInput("changelog", { required: true });
 		const status = getInput("status")?.toLowerCase() || "success";
+		const imageUrl = getInput("image-url") || getImageUrl(platform);
 
 		const message =
 			status === "success"
@@ -34,7 +35,7 @@ export async function run(): Promise<void> {
 						header: {
 							title: `${platform} Build`,
 							subtitle: `triggered by ${context.actor}`,
-							imageUrl: getImageUrl(platform),
+							imageUrl: imageUrl,
 						},
 						sections: [
 							{
