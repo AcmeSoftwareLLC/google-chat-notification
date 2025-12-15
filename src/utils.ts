@@ -1,7 +1,7 @@
 import { context } from "@actions/github";
 
 function getImageUrl(platform: string): string {
-	return `https://raw.githubusercontent.com/AcmeSoftwareLLC/slack-build-notification/refs/heads/main/logos/${platform.toLowerCase()}.png`;
+	return `https://raw.githubusercontent.com/AcmeSoftwareLLC/google-chat-notification/refs/heads/main/platforms/${platform.toLowerCase()}.png`;
 }
 
 function getWorkflowUrl(): string {
