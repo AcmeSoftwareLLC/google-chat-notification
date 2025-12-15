@@ -31244,7 +31244,7 @@ var githubExports = requireGithub();
 var libExports = requireLib();
 
 function getImageUrl(platform) {
-    return `https://raw.githubusercontent.com/AcmeSoftwareLLC/slack-build-notification/refs/heads/main/logos/${platform.toLowerCase()}.png`;
+    return `https://raw.githubusercontent.com/AcmeSoftwareLLC/google-chat-notification/refs/heads/main/platforms/${platform.toLowerCase()}.png`;
 }
 function getWorkflowUrl() {
     const { owner, repo } = githubExports.context.repo;
@@ -31272,6 +31272,7 @@ async function run() {
         const buildNumber = coreExports.getInput("build-number") || "N/A";
         const changelog = coreExports.getInput("changelog", { required: true });
         const status = coreExports.getInput("status")?.toLowerCase() || "success";
+        const imageUrl = coreExports.getInput("image-url") || getImageUrl(platform);
         const message = status === "success"
             ? `🚀 ${mention} New ${platform} Build Available!`
             : status === "canceled"
@@ -31286,7 +31287,7 @@ async function run() {
                         header: {
                             title: `${platform} Build`,
                             subtitle: `triggered by ${githubExports.context.actor}`,
-                            imageUrl: getImageUrl(platform),
+                            imageUrl: imageUrl,
                         },
                         sections: [
                             {
