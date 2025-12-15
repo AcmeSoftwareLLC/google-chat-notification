@@ -50,7 +50,7 @@ jobs:
 			platform: 'Android'
 			changelog: ${{ steps.get-changelog.outputs.release-notes }}
 			app-version: '1.2.3'
-			build-number: '456'
+			build-number: '4567891011'
             status: ${{ job.status }}
 ```
 

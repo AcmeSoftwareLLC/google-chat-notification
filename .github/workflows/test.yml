@@ -1,0 +1,36 @@
+name: Test Workflow
+
+on:
+    push:
+        branches:
+            - main
+    workflow_dispatch:
+
+jobs:
+    notification-test:
+        runs-on: ubuntu-latest
+        name: Notification Test
+
+        strategy:
+            matrix:
+                platform: [android, ios, macos, web]
+
+        steps:
+            - uses: actions/checkout@v4
+
+            - name: Get Changelog
+              id: get-changelog
+              uses: release-flow/keep-a-changelog-action@v3
+              with:
+                  command: query
+                  version: unreleased
+
+            - name: Send Google Chat Notification
+              uses: ./
+              with:
+                  webhook-url: ${{ secrets.GOOGLE_CHAT_WEBHOOK_URL }}
+                  platform: "Android"
+                  changelog: ${{ steps.get-changelog.outputs.release-notes }}
+                  app-version: "1.2.3"
+                  build-number: "4567891011"
+                  status: ${{ job.status }}
