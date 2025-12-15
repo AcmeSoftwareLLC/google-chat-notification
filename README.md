@@ -44,7 +44,7 @@ jobs:
           version: unreleased
 
 	  - name: Google Chat Build Notification
-		uses: AcmeSoftwareLLC/google-chat-build-notification@main
+		uses: AcmeSoftwareLLC/google-chat-build-notification@v1
 		with:
 			webhook-url: ${{ secrets.GCHAT_WEBHOOK_URL }}
 			platform: 'Android'
