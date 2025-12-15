@@ -31294,6 +31294,7 @@ async function run() {
                                 widgets: [
                                     getDecoratedText("info", "App Version", appVersion),
                                     getDecoratedText("settings", "Build Number", buildNumber),
+                                    getDecoratedText("storage", "Repository", `${githubExports.context.repo.owner}/${githubExports.context.repo.repo}`),
                                     getDivider(),
                                     {
                                         textParagraph: { text: changelog, text_syntax: "MARKDOWN" },

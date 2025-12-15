@@ -42,6 +42,7 @@ export async function run(): Promise<void> {
 								widgets: [
 									getDecoratedText("info", "App Version", appVersion),
 									getDecoratedText("settings", "Build Number", buildNumber),
+									getDecoratedText("storage", "Repository", context.repo.repo),
 									getDivider(),
 									{
 										textParagraph: { text: changelog, text_syntax: "MARKDOWN" },
