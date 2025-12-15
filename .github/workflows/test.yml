@@ -13,7 +13,7 @@ jobs:
 
         strategy:
             matrix:
-                platform: [android, ios, macos, web]
+                platform: [Android, iOS, macOS, Web]
 
         steps:
             - uses: actions/checkout@v4
@@ -29,7 +29,7 @@ jobs:
               uses: ./
               with:
                   webhook-url: ${{ secrets.GOOGLE_CHAT_WEBHOOK_URL }}
-                  platform: "Android"
+                  platform: ${{ matrix.platform }}
                   changelog: ${{ steps.get-changelog.outputs.release-notes }}
                   app-version: "1.2.3"
                   build-number: "4567891011"
