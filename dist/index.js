@@ -31322,7 +31322,18 @@ async function run() {
         const response = await client.post(webhookUrl, JSON.stringify(content), {
             "Content-Type": "application/json",
         });
-        if (response.message.statusCode && response.message.statusCode >= 400) {
+        const statusCode = response.message.statusCode;
+        if (statusCode && statusCode >= 400) {
+            const body = await response.readBody();
+            if (body) {
+                const parsedBody = JSON.parse(body);
+                console.log(parsedBody.error);
+                console.log(typeof parsedBody.error);
+                console.log(parsedBody.error.message);
+                if (parsedBody.error.message) {
+                    throw new Error(`Failed to send notification. Status Code: ${response.message.statusCode}. Message: ${parsedBody.message}`);
+                }
+            }
             throw new Error(`Failed to send notification. Status Code: ${response.message.statusCode}`);
         }
     }
