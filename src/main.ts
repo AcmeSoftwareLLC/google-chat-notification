@@ -91,14 +91,18 @@ export async function run(): Promise<void> {
 					setFailed(
 						`Failed to send notification. Status Code: ${statusCode}. Message: ${message}`,
 					);
+					process.exit(1);
 				}
 			}
 
 			setFailed(`Failed to send notification. Status Code: ${statusCode}`);
+			process.exit(1);
 		}
 
 		setOutput("status-code", statusCode || 200);
+		process.exit(0);
 	} catch (error) {
 		setFailed(error instanceof Error ? error.message : String(error));
+		process.exit(1);
 	}
 }
