@@ -1,0 +1,38 @@
+name: Google Chat Build Notification
+description: Send build notifications to Google Chat
+author: Acme Software LLC
+
+branding:
+  icon: message-circle
+  color: blue
+
+inputs:
+  webhook-url:
+    description: Google Chat Webhook URL
+    required: true
+  platform:
+    description: Build platform (e.g., iOS, Android)
+    required: true
+  changelog:
+    description: Changelog in markdown format
+    required: true
+  app-version:
+    description: Application version
+    required: true
+  build-number:
+    description: Build number
+    default: 'N/A'
+    required: false
+  mention:
+    description: Mention user or group in the notification, e.g., '<users/all>' or '<users/1234567890>'
+    default: '<users/all>'
+    required: false
+  status:
+    description: Build status (e.g., success, failure, cancelled)
+    required: false
+    default: success
+
+  
+runs:
+  using: node24
+  main: dist/index.js
