@@ -31,10 +31,9 @@ on:
 
 jobs:
   notify:
-	runs-on: ubuntu-latest
-	
+    runs-on: ubuntu-latest
     steps:
-	  - uses: actions/checkout@v4
+      - uses: actions/checkout@v4
 
       - name: Get Changelog
         id: get-changelog
@@ -43,15 +42,15 @@ jobs:
           command: query
           version: unreleased
 
-	  - name: Google Chat Build Notification
-		uses: AcmeSoftwareLLC/google-chat-build-notification@v1
-		with:
-			webhook-url: ${{ secrets.GCHAT_WEBHOOK_URL }}
-			platform: 'Android'
-			changelog: ${{ steps.get-changelog.outputs.release-notes }}
-			app-version: '1.2.3'
-			build-number: '4567891011'
-            status: ${{ job.status }}
+      - name: Google Chat Build Notification
+        uses: AcmeSoftwareLLC/google-chat-build-notification@v1
+        with:
+          webhook-url: ${{ secrets.GCHAT_WEBHOOK_URL }}
+          platform: 'Android'
+          changelog: ${{ steps.get-changelog.outputs.release-notes }}
+          app-version: '1.2.3'
+          build-number: '4567891011'
+          status: ${{ job.status }}
 ```
 
 ## 📝 License
